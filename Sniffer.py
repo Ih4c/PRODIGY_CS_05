@@ -1,6 +1,7 @@
-
+#importing the Library used
 import scapy.all as scapy
 
+#defining the callback function
 def packet_callback(packet):
     if packet.haslayer(scapy.IP):
         src_ip = packet[scapy.IP].src
@@ -25,6 +26,7 @@ def packet_callback(packet):
             except (IndexError, UnicodeDecodeError):
                 print("Unable to decode UDP payload.")
 
+#the main function that runs when the program fires up
 def start_sniffing():
     scapy.sniff(store=False, prn=packet_callback)
 
